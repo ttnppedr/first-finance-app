@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'data/listdata.dart';
+
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -7,7 +9,75 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: _head(),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: SizedBox(height: 340, child: _head()),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Transaction History',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 19,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      'See all',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 15,
+                          color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return ListTile(
+                    leading: ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Image.asset(
+                        'images/${getter()[index].image!}',
+                        height: 40,
+                      ),
+                    ),
+                    title: Text(
+                      getter()[index].name!,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 17,
+                      ),
+                    ),
+                    subtitle: Text(
+                      getter()[index].time!,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    trailing: Text(
+                      getter()[index].fee!,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 19,
+                        color: getter()[index].buy! ? Colors.red : Colors.green,
+                      ),
+                    ),
+                  );
+                },
+                childCount: getter().length,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
