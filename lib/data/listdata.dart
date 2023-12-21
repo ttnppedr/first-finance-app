@@ -1,21 +1,21 @@
 import 'money.dart';
 
-List<money> getter() {
-  money education = money();
+List<Money> getter() {
+  Money education = Money();
   education.name = 'edu';
   education.fee = '650';
   education.time = 'today';
   education.image = 'Education.png';
   education.buy = false;
 
-  money food = money();
+  Money food = Money();
   food.name = 'food';
   food.fee = '15';
   food.time = 'today';
   food.image = 'Food.png';
   food.buy = true;
 
-  money transfer = money();
+  Money transfer = Money();
   transfer.name = 'transfer';
   transfer.fee = '100';
   transfer.time = 'jan 20, 2022';
