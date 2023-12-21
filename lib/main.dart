@@ -1,4 +1,4 @@
-import 'package:first_finance_app/home.dart';
+import 'package:first_finance_app/screens/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
