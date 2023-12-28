@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+
+import '../data/model/add_date.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({Key? key}) : super(key: key);
@@ -8,6 +11,7 @@ class AddScreen extends StatefulWidget {
 }
 
 class _AddScreenState extends State<AddScreen> {
+  final box = Hive.box<AddData>('data');
   DateTime date = new DateTime.now();
   String? selectedItem;
   String? selectedType;
@@ -75,7 +79,17 @@ class _AddScreenState extends State<AddScreen> {
           datetime(),
           Spacer(),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              var add = AddData(
+                selectedType!,
+                amountC.text,
+                date,
+                explainC.text,
+                selectedItem!,
+              );
+              box.add(add);
+              Navigator.of(context).pop();
+            },
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(

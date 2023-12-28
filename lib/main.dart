@@ -1,7 +1,14 @@
 import 'package:first_finance_app/widgets/bottomnavigationbar.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+import 'data/model/add_date.dart';
+
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(AddDataAdapter());
+  await Hive.openBox<AddData>('data');
+
   runApp(const MyApp());
 }
 
