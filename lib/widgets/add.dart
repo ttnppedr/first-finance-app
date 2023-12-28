@@ -9,12 +9,22 @@ class AddScreen extends StatefulWidget {
 
 class _AddScreenState extends State<AddScreen> {
   String? selectedItem;
+  final TextEditingController explainC = TextEditingController();
+  FocusNode ex = FocusNode();
   final List<String> _item = [
     'Food',
     'Transfer',
     'Transportation',
     'Education',
   ];
+
+  @override
+  initState() {
+    super.initState();
+    ex.addListener(() {
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +58,41 @@ class _AddScreenState extends State<AddScreen> {
           SizedBox(height: 50),
           name(),
           SizedBox(height: 30),
+          explain(),
+          SizedBox(height: 30),
         ],
+      ),
+    );
+  }
+
+  Padding explain() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: TextField(
+        focusNode: ex,
+        controller: explainC,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          labelText: 'explain',
+          labelStyle: TextStyle(
+            fontSize: 17,
+            color: Colors.grey.shade500,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+              width: 2,
+              color: Color(0xFFC5C5C5),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+              width: 2,
+              color: Color(0xFF368983),
+            ),
+          ),
+        ),
       ),
     );
   }
