@@ -11,6 +11,8 @@ class _AddScreenState extends State<AddScreen> {
   String? selectedItem;
   final TextEditingController explainC = TextEditingController();
   FocusNode ex = FocusNode();
+  final TextEditingController amountC = TextEditingController();
+  FocusNode amount_ = FocusNode();
   final List<String> _item = [
     'Food',
     'Transfer',
@@ -60,7 +62,41 @@ class _AddScreenState extends State<AddScreen> {
           SizedBox(height: 30),
           explain(),
           SizedBox(height: 30),
+          amount(),
         ],
+      ),
+    );
+  }
+
+  Padding amount() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: TextField(
+        keyboardType: TextInputType.number,
+        focusNode: amount_,
+        controller: amountC,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          labelText: 'amount',
+          labelStyle: TextStyle(
+            fontSize: 17,
+            color: Colors.grey.shade500,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+              width: 2,
+              color: Color(0xFFC5C5C5),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+              width: 2,
+              color: Color(0xFF368983),
+            ),
+          ),
+        ),
       ),
     );
   }
