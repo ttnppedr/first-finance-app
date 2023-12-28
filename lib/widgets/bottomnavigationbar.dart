@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/home.dart';
 import '../screens/statistics.dart';
+import '../widgets/add.dart';
 
 class Bottom extends StatefulWidget {
   const Bottom({Key? key}) : super(key: key);
@@ -19,7 +20,10 @@ class _BottomState extends State<Bottom> {
     return Scaffold(
       body: screen[index],
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => AddScreen()));
+        },
         child: Icon(Icons.add),
         backgroundColor: Color(0xFF368983),
       ),
