@@ -73,6 +73,29 @@ class _AddScreenState extends State<AddScreen> {
           how(),
           SizedBox(height: 30),
           datetime(),
+          Spacer(),
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Color(0xFF368983),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              width: 120,
+              height: 50,
+              child: Text(
+                'Save',
+                style: TextStyle(
+                  fontFamily: 'f',
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
         ],
       ),
     );
