@@ -8,6 +8,7 @@ class AddScreen extends StatefulWidget {
 }
 
 class _AddScreenState extends State<AddScreen> {
+  DateTime date = new DateTime.now();
   String? selectedItem;
   String? selectedType;
   final TextEditingController explainC = TextEditingController();
@@ -70,7 +71,44 @@ class _AddScreenState extends State<AddScreen> {
           amount(),
           SizedBox(height: 30),
           how(),
+          SizedBox(height: 30),
+          datetime(),
         ],
+      ),
+    );
+  }
+
+  Widget datetime() {
+    return Container(
+      alignment: Alignment.bottomLeft,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          width: 2,
+          color: Color(0xFFC5C5C5),
+        ),
+      ),
+      width: 300,
+      child: TextButton(
+        onPressed: () async {
+          DateTime? newDate = await showDatePicker(
+            context: context,
+            initialDate: date,
+            firstDate: DateTime(2022),
+            lastDate: DateTime(2100),
+          );
+          if (newDate == null) return;
+          setState(() {
+            date = newDate!;
+          });
+        },
+        child: Text(
+          'Date : ${date.year} / ${date.month} / ${date.day}',
+          style: TextStyle(
+            fontSize: 15,
+            color: Colors.black,
+          ),
+        ),
       ),
     );
   }
