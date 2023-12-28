@@ -9,6 +9,7 @@ class AddScreen extends StatefulWidget {
 
 class _AddScreenState extends State<AddScreen> {
   String? selectedItem;
+  String? selectedType;
   final TextEditingController explainC = TextEditingController();
   FocusNode ex = FocusNode();
   final TextEditingController amountC = TextEditingController();
@@ -18,6 +19,10 @@ class _AddScreenState extends State<AddScreen> {
     'Transfer',
     'Transportation',
     'Education',
+  ];
+  final List<String> _type = [
+    'Income',
+    'Expense',
   ];
 
   @override
@@ -63,7 +68,63 @@ class _AddScreenState extends State<AddScreen> {
           explain(),
           SizedBox(height: 30),
           amount(),
+          SizedBox(height: 30),
+          how(),
         ],
+      ),
+    );
+  }
+
+  Padding how() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        width: 300,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            width: 2,
+            color: Color(0xFFC5C5C5),
+          ),
+        ),
+        child: DropdownButton<String>(
+          value: selectedType,
+          items: _type
+              .map((e) => DropdownMenuItem(
+                    child: Row(
+                      children: [
+                        Text(
+                          e,
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ],
+                    ),
+                    value: e,
+                  ))
+              .toList(),
+          selectedItemBuilder: (BuildContext context) => _type
+              .map(
+                (e) => Row(
+                  children: [
+                    Text(e),
+                  ],
+                ),
+              )
+              .toList(),
+          hint: Text(
+            'how',
+            style: TextStyle(color: Colors.grey),
+          ),
+          dropdownColor: Colors.white,
+          isExpanded: true,
+          underline: Container(),
+          onChanged: (value) {
+            setState(() {
+              selectedType = value!;
+            });
+          },
+        ),
       ),
     );
   }
