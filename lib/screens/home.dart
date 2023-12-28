@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../data/listdata.dart';
 import '../data/model/add_date.dart';
+import '../data/utility.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -226,7 +227,7 @@ class _HomeState extends State<Home> {
                   child: Row(
                     children: [
                       Text(
-                        '\$ 2,957',
+                        '\$ ${balance()}',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
@@ -295,7 +296,7 @@ class _HomeState extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '\$ 1,450',
+                        '\$ ${income()}',
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 17,
@@ -303,7 +304,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Text(
-                        '\$ 450',
+                        '\$ ${expenses()}',
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 17,
